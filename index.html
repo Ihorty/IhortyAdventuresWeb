@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Brick site</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="mainScript.js"></script>
+</head>
+
+<body>
+    <div class="mainContent">
+        <div class="brickZone">
+            <h3 class="banner" id="banner"> 0 </h2>
+            <img src="img/brick.png" class="brick" id="brick" onClick="clickOnBrick()"/>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="shopItem" id="cakeShopItem" onclick="buyCake()">
+            <b class="shopItemNum" id="cakeNum"> 0 </b>
+            <b class="shopItemName" id="cakeName"> Cake </b>
+            <b class="shopItemPrice" id="cakePrice"> 10.0 </b>
+           <span class="tooltipText"> Adds extra 0.5 bricks to your clicks. </span>
+        </div>
+        <div class="shopItem" id="bakerShopItem" onclick="buyBaker()">
+            <b class="shopItemNum" id="bakerNum"> 0 </b>
+            <b class="shopItemName" id="bakerName"> Baker </b>
+            <b class="shopItemPrice" id="bakerPrice"> 10.0 </b>
+           <span class="tooltipText"> Adds extra 0.5 b/s. </span>
+        </div>
+    </div>
+</body></html>
