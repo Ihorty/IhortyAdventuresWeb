@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Brick site</title>
     <link rel="stylesheet" href="styles.css">
     <script type="text/javascript" src="mainScript.js"></script>
+    <template></template>
 </head>
 
-<body>
+<body onload="startup()">
     <div class="mainContent">
         <div class="brickZone">
             <h3 class="banner" id="banner"> 0 </h2>
-            <img src="img/brick.png" class="brick" id="brick" onClick="clickOnBrick()"/>
+                <div class="brick" id="brick" onclick="clickOnBrick()">
+                    <img src="img/brick.png" id="brickImg" />
+                </div>
         </div>
     </div>
     <div class="sidebar">
+        <ul id="sidebarList">
+
+        </ul>
+        <!--
         <div class="shopItem" id="cakeShopItem" onclick="buyCake()">
             <b class="shopItemNum" id="cakeNum"> 0 </b>
             <b class="shopItemName" id="cakeName"> Cake </b>
@@ -27,5 +35,8 @@
             <b class="shopItemPrice" id="bakerPrice"> 10.0 </b>
            <span class="tooltipText"> Adds extra 0.5 b/s. </span>
         </div>
+    -->
     </div>
-</body></html>
+</body>
+
+</html>
