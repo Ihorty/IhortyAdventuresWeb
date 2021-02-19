@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Brick site</title>
-    <link rel="stylesheet" href="styles/mainStyles.scss">
+    <link rel="stylesheet" href="styles/mainStyles.css">
     <script type="text/javascript" src="scripts/mainScript.js"></script>
+    <script type="text/javascript" src="scripts/animatedNumber.js"></script>
     <template></template>
 </head>
 
 <body onload="startup()">
     <div class="mainContent">
         <div class="brickZone">
-            <h3 class="banner" id="banner"> 0 </h2>
-                <div class="brick" id="brick" onclick="clickOnBrick()">
-                    <img src="img/brick.png" id="brickImg" />
-                </div>
+            <div class="banner" id="banner">0</div>
+            <div class="brick" id="brick" onclick="clickOnBrick()">
+                <img src="img/brick.png" id="brickImg" />
+            </div>
         </div>
     </div>
     <div class="sidebar">

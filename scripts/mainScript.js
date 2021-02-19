@@ -7,7 +7,7 @@ var brickRotation = 0;
 var brickRotationPerClick = 5;
 var brickRotationPerSecond = 0;
 
-var shopItems = [];
+const shopItems = [];
 
 
 
@@ -15,7 +15,7 @@ var shopItems = [];
 // TODO implement savefile via cookies on the website
 
 function startup() {
-    setInterval(recurringEachSecond, 1000);
+    setInterval(recurringEachFrame, 1000 / 60);
 
     // new item (innerId , Name shown to users, starter price , Value it adds, true if automatic/false if per click)
     shopItems.push(new shopItem("cake", "Cake", 10, 1, false));
@@ -40,7 +40,7 @@ function clickOnBrick() {
 }
 
 function updateBanner() {
-    document.getElementById("banner").innerHTML = Math.round(100 * totalClicks) / 100;
+    document.getElementById("banner").innerHTML = numberWithCommas(Math.round(totalClicks));
 }
 
 function setupRotationAnimation() {
@@ -62,13 +62,17 @@ function rotateBrick() {
     document.getElementById("brick").style.transform = "rotate(" + brickRotation + "deg)";
 }
 
-function recurringEachSecond() {
-    totalClicks += clicksPerSecond;
+function recurringEachFrame() {
+    totalClicks += (clicksPerSecond / 60);
     updateBanner();
 }
 
 function buyShopItem(id) {
     shopItems.find(element => element.id === id).buyItem();
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 
