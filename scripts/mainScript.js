@@ -25,6 +25,7 @@ function startup() {
 
     shopItems.forEach(element => {
         var el = document.createElement("li");
+        el.className = "shopItemListItem";
         el.innerHTML = element.innerHTML;
         document.getElementById("sidebarList").appendChild(el);
     });
