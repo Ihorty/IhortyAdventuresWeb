@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Merriweather_Sans';
+    src: url('../fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf');
+}
+
+* {
+    font-family: 'Merriweather Sans', sans-serif;
+}

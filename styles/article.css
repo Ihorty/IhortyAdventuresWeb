@@ -1,35 +1,46 @@
+@import url("fonts.css");
 .articleContainer {
     display: flex;
     flex-wrap: wrap;
     position: relative;
+    justify-content: space-between;
 }
 
 .articleTitle {
     width: 100%;
 }
 
-.articleContent {}
+.articleContent {
+    margin-bottom: 8px;
+}
+
+.articleSeparator {
+    width: 100%;
+    color: #00000090;
+    margin-left: 32px;
+    margin-right: 32px;
+}
 
 .articleGoToButton {
-    padding: 8px;
-    margin: 8px;
-    border-width: 2px;
-    border-color: beige;
-    border-radius: 10%;
+    padding: 4px 8px;
+    border-width: 4px;
+    border-color: lightsalmon;
+    border-style: solid;
+    background-color: lightsalmon;
+    border-radius: 6px;
     box-sizing: border-box;
-    transition-duration: 200ms;
+    transition-duration: 400ms;
+    cursor: pointer;
 }
 
 .articleGoToButton:hover {
-    border-color: aqua;
+    box-shadow: 4px 4px 2px 0px rgba(0, 0, 0, 0.404);
+    transform: translate(-3px, -3px);
 }
 
 .articleDate {
     right: 0;
+    padding: 0 8px;
     font-size: 14px;
-    color: gray;
-    align-self: flex-end;
-    justify-self: flex-end;
-    background-color: rebeccapurple;
-    flex: 0 0;
+    color: #00000090;
 }

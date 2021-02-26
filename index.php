@@ -13,6 +13,12 @@
     <main>
         <div class="mainContent">
             <?php include "inc/articleTemplate.php"?>
+            <hr class="mainSeparator">
+            <?php include "inc/articleTemplate.php"?>
+            <hr class="mainSeparator">
+            <?php include "inc/articleTemplate.php"?>
+            <hr class="mainSeparator">
+            <?php include "inc/articleTemplate.php"?>
         </div>
         <div class="sideContent"></div>
     </main>

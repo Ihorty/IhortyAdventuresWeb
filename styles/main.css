@@ -1,13 +1,5 @@
 @import url("article.css");
-@font-face {
-    font-family: 'Merriweather_Sans';
-    src: url('../fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf');
-}
-
-* {
-    font-family: 'Merriweather Sans', sans-serif;
-}
-
+@import url("fonts.css");
 body {
     margin: 0;
     background-color: bisque;
@@ -51,6 +43,7 @@ nav {
     background-color: slategray;
     position: sticky;
     top: 0;
+    z-index: 2;
     display: flex;
     margin-top: 148px;
     height: 48px;
@@ -84,7 +77,6 @@ nav {
 
 main {
     background-color: rgb(181, 220, 255);
-    z-index: 1;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -101,10 +93,18 @@ main {
     border-radius: 16px;
     box-shadow: 4px 4px 8px 2px #00000023;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     box-sizing: border-box;
-    padding: 0 16px;
+    padding: 0 16px 16px 16px;
+}
+
+.mainSeparator {
+    width: 80%;
+    margin: 32px 0;
+    color: rgba(255, 68, 0, 0.4);
+    flex-shrink: 1;
 }
 
 .sideContent {
