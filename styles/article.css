@@ -1,0 +1,35 @@
+.articleContainer {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.articleTitle {
+    width: 100%;
+}
+
+.articleContent {}
+
+.articleGoToButton {
+    padding: 8px;
+    margin: 8px;
+    border-width: 2px;
+    border-color: beige;
+    border-radius: 10%;
+    box-sizing: border-box;
+    transition-duration: 200ms;
+}
+
+.articleGoToButton:hover {
+    border-color: aqua;
+}
+
+.articleDate {
+    right: 0;
+    font-size: 14px;
+    color: gray;
+    align-self: flex-end;
+    justify-self: flex-end;
+    background-color: rebeccapurple;
+    flex: 0 0;
+}

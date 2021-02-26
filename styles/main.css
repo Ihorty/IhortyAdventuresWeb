@@ -1,3 +1,13 @@
+@import url("article.css");
+@font-face {
+    font-family: 'Merriweather_Sans';
+    src: url('../fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf');
+}
+
+* {
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
 body {
     margin: 0;
     background-color: bisque;
@@ -52,20 +62,21 @@ nav {
 
 .navButton {
     display: flex;
-    flex: 1;
+    flex: 1 1;
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     transition-duration: 200ms;
     cursor: pointer;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .navButton:hover {
     background-color: #ffffff40;
-    font-size: 26px;
+    font-size: 24px;
 }
 
 
@@ -74,7 +85,6 @@ nav {
 main {
     background-color: rgb(181, 220, 255);
     z-index: 1;
-    height: 100vh;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -85,10 +95,16 @@ main {
     flex: 2 0;
     min-width: 500px;
     max-width: 800px;
+    min-height: calc(100vh - 48px - 148px - 120px - 24px);
     margin: 8px 8px 16px 32px;
     background-color: beige;
     border-radius: 16px;
     box-shadow: 4px 4px 8px 2px #00000023;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 0 16px;
 }
 
 .sideContent {
@@ -96,6 +112,7 @@ main {
     flex-grow: 0 0;
     width: 250px;
     max-height: 250px;
+    min-height: 160px;
     margin: 8px 32px 16px 8px;
     background-color: beige;
     border-radius: 16px;
@@ -108,7 +125,20 @@ main {
 footer {
     background-color: slategray;
     height: 120px;
+    padding: 16px;
+    box-sizing: border-box;
 }
+
+
+/* Extra icons */
+
+.underConstructionIcon {
+    width: 300px;
+    height: 300px;
+}
+
+
+/* Other sizes */
 
 @media(max-width: 860px) {
     .mainContent {
