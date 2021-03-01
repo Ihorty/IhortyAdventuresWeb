@@ -6,7 +6,7 @@
     <title>Brick site</title>
     <link rel="stylesheet" href="styles/mainStyles.css">
     <script type="text/javascript" src="scripts/mainScript.js"></script>
-    <script type="text/javascript" src="scripts/animatedNumber.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <template></template>
 </head>
 
@@ -17,6 +17,10 @@
             <div class="brick" id="brick" onclick="clickOnBrick()">
                 <img src="img/brick.png" id="brickImg" />
             </div>
+        </div>
+
+        <div class="devMenu">
+            <button onclick="saveCookies()"> Save </button>
         </div>
     </div>
     <div class="sidebar">

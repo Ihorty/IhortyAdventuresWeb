@@ -16,6 +16,13 @@ body {
     margin: 0;
 }
 
+.devMenu {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
 .mainContent {
     display: inline-block;
     background-color: green;

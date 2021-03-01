@@ -7,16 +7,29 @@ var brickRotation = 0;
 var brickRotationPerClick = 5;
 var brickRotationPerSecond = 0;
 
+var cookieSaveFile;
+const SAVE_FILE_ID = "cookie_clicker_save"
 const shopItems = [];
 
-
-
-// TODO implement recursive addition to the total clicks (bakers add x bricks per second)
 // TODO implement savefile via cookies on the website
 
 function startup() {
-    setInterval(recurringEachFrame, 1000 / 60);
+    cookieSaveFile = Cookies.get(SAVE_FILE_ID);
+    if (cookieSaveFile == undefined) {
+        cookieSaveFile = new ClickerSaveFile();
+    } else {
+        cookieSaveFile = new ClickerSaveFile(JSON.parse(cookieSaveFile));
+    }
 
+    totalClicks = cookieSaveFile.totalClicks;
+    setInterval(recurringEachFrame, 1000 / 60); // Each frame
+    setInterval(saveCookies(), 60 * 1000); // Each minute
+    setupShopItems();
+    setupRotationAnimation();
+    updateBanner();
+}
+
+function setupShopItems() {
     // new item (innerId , Name shown to users, starter price , Value it adds, true if automatic/false if per click)
     shopItems.push(new shopItem("cake", "Cake", 10, 1, false));
     shopItems.push(new shopItem("terminator", "Terminator", 1, 1000000, false)); //debug item
@@ -24,13 +37,21 @@ function startup() {
     shopItems.push(new shopItem("terminatorAuto", "Terminator Automatic", 1, 1000000, true)); //debug item
 
     shopItems.forEach(element => {
+        element.setBought(cookieSaveFile.getItemAmount(element.id));
+
         var el = document.createElement("li");
         el.className = "shopItemListItem";
         el.innerHTML = element.innerHTML;
         document.getElementById("sidebarList").appendChild(el);
-    });
 
-    setupRotationAnimation();
+        element.updateItem();
+
+        if (element.isRecurring) {
+            clicksPerSecond += element.valueThatAdds * element.bought;
+        } else {
+            valueOfClick += element.valueThatAdds * element.bought;
+        }
+    });
 }
 
 function clickOnBrick() {
@@ -63,6 +84,12 @@ function rotateBrick() {
     document.getElementById("brick").style.transform = "rotate(" + brickRotation + "deg)";
 }
 
+function saveCookies() {
+    cookieSaveFile.totalClicks = totalClicks;
+    Cookies.set(SAVE_FILE_ID, JSON.stringify(cookieSaveFile), { expires: 180 });
+    //Todo notify save to user
+}
+
 function recurringEachFrame() {
     totalClicks += (clicksPerSecond / 60);
     updateBanner();
@@ -76,8 +103,10 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+/*****************************/
+/******* Inner Classes *******/
+/*****************************/
 
-//Inner class of any shoppable item. Here we'll hide all the functions related to the items.
 class shopItem {
 
     constructor(id, shownName, price, valueThatAdds, isRecurring) {
@@ -104,7 +133,16 @@ class shopItem {
             "</div>";
     }
 
-    // When something is bought it updates its price, its graphical elements, rotation and the ammount you get per click/second
+    /**
+     * This is to be launched only after loading the savefile
+     * @param {number} i Amount bought already
+     */
+    setBought(i) {
+        this.bought = i;
+        this.updatePrice();
+    }
+
+    // When something is bought it updates its price, its graphical elements, rotation and the amount you get per click/second
     buyItem() {
         if (totalClicks >= this.price) {
             totalClicks -= this.price;
@@ -122,6 +160,9 @@ class shopItem {
             this.updateItem();
             updateBanner();
             updateRotationAnimation();
+
+            cookieSaveFile.setItemAmount(this.id, this.bought);
+            saveCookies(); //TODO delete this if it is too laggy to buy
         }
     }
 
@@ -138,5 +179,43 @@ class shopItem {
     updateItem() {
         document.getElementById(this.id + "Price").innerHTML = this.price;
         document.getElementById(this.id + "Num").innerHTML = this.bought;
+    }
+}
+
+
+/* Save system */
+
+class ShopItemBought {
+    constructor(id, amount) {
+        this.id = id;
+        this.amount = amount;
+    }
+}
+
+class ClickerSaveFile {
+
+    constructor(obj) {
+        this.totalClicks = totalClicks; // Number
+        this.lastLogin = Date.now(); // Date
+        this.shopItemsAmount = new Array(); //Array of ShopItemBought;
+
+        for (var property in obj) this[property] = obj[property]; // Por cada propiedad dentro del objeto que viene, lo asignamos al archivo local
+    }
+
+    setItemAmount(id, amount) {
+        let found = this.shopItemsAmount.find(element => element.id === id);
+        if (found === undefined) {
+            this.shopItemsAmount.push(new ShopItemBought(id, amount));
+        } else {
+            found.amount = amount;
+        }
+    }
+
+    getItemAmount(id) {
+
+        let found = this.shopItemsAmount.find(element => element.id === id);
+        if (found == undefined)
+            return 0;
+        return found.amount;
     }
 }
