@@ -12,21 +12,15 @@
 
 <body onload="startup()">
     <div class="mainContent">
-        <div class="brickZone">
-            <div class="banner" id="banner">0</div>
-            <div class="brick" id="brick" onclick="clickOnBrick()">
-                <img src="img/brick.png" id="brickImg" />
-            </div>
-        </div>
-
-        <div class="devMenu">
-            <button onclick="saveCookies()"> Save </button>
-        </div>
+        <?php include 'inc/game_zone/gameZone.php'?>
     </div>
     <div class="sidebar">
         <ul id="sidebarList">
 
         </ul>
+        <div class="devMenu">
+            <button onclick="saveCookies()"> Save </button>
+        </div>
     </div>
 </body>
 

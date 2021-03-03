@@ -1,3 +1,5 @@
+const devMode = false; //Change this to show dev tools
+
 var totalClicks = 0;
 var clicksPerSecond = 0;
 var valueOfClick = 1;
@@ -14,6 +16,8 @@ const shopItems = [];
 // TODO implement savefile via cookies on the website
 
 function startup() {
+    if (!devMode) document.querySelector(".devMenu").hidden = true;
+
     cookieSaveFile = Cookies.get(SAVE_FILE_ID);
     if (cookieSaveFile == undefined) {
         cookieSaveFile = new ClickerSaveFile();
@@ -22,7 +26,7 @@ function startup() {
     }
 
     totalClicks = cookieSaveFile.totalClicks;
-    setInterval(recurringEachFrame, 1000 / 60); // Each frame
+    setInterval(recurringEachFrame, 1000 / 24); // Each frame
     setInterval(saveCookies(), 60 * 1000); // Each minute
     setupShopItems();
     setupRotationAnimation();
