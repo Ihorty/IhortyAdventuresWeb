@@ -30,11 +30,13 @@ body {
 
 .sidebar {
     position: relative;
-    background-color: lightgoldenrodyellow;
+    /* background-color: lightgoldenrodyellow; */
+    background: linear-gradient(90deg, rgb(161, 103, 32) 0%, rgb(247, 158, 51) 25%, rgb(247, 158, 51) 75%, rgb(161, 103, 32) 100%);
     border-color: darkorange;
     border-style: double;
     border-width: 0px;
     border-left-width: 4px;
+    box-sizing: border-box;
     height: 100%;
     width: var(--menu-width);
     top: 0px;
@@ -44,6 +46,8 @@ body {
 @media (max-width: 750px) {
     .mainContent {
         width: 100%;
+        max-height: 750px;
+        min-height: 450px;
     }
     .sidebar {
         border-width: 0;

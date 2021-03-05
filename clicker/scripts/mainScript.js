@@ -13,10 +13,27 @@ var cookieSaveFile;
 const SAVE_FILE_ID = "cookie_clicker_save"
 const shopItems = [];
 
-// TODO implement savefile via cookies on the website
+var devMenu;
+var clickObject;
+var rotatingObject;
+var shopListMenu;
+var energyLabel;
+
+
+window.onload = function() {
+    // Constants of game elements from html:
+    devMenu = document.querySelector(".devMenu");
+    clickObject = document.getElementById("clickCrystal");
+    clickRotatingObject = document.getElementById("rotatingGearClick");
+    rotatingObject = document.getElementById("rotatingGear");
+    shopListMenu = document.getElementById("sidebarList");
+    energyLabel = document.getElementById("totalPointsNumber");
+
+    startup();
+}
 
 function startup() {
-    if (!devMode) document.querySelector(".devMenu").hidden = true;
+    if (!devMode) devMenu.hidden = true;
 
     cookieSaveFile = Cookies.get(SAVE_FILE_ID);
     if (cookieSaveFile == undefined) {
@@ -31,14 +48,20 @@ function startup() {
     setupShopItems();
     setupRotationAnimation();
     updateBanner();
+
+    clickObject.onclick = () => clickOnBrick();
 }
 
 function setupShopItems() {
     // new item (innerId , Name shown to users, starter price , Value it adds, true if automatic/false if per click)
-    shopItems.push(new shopItem("cake", "Cake", 10, 1, false));
-    shopItems.push(new shopItem("terminator", "Terminator", 1, 1000000, false)); //debug item
-    shopItems.push(new shopItem("baker", "Baker", 20, 1, true));
-    shopItems.push(new shopItem("terminatorAuto", "Terminator Automatic", 1, 1000000, true)); //debug item
+    shopItems.push(new shopItem("pebble", "China Arcana", 15, 0.15, true));
+    shopItems.push(new shopItem("wand", "Varita magica", 150, 1, true));
+
+    // Development mode items
+    if (devMode) {
+        shopItems.push(new shopItem("terminator", "Terminator", 1, 1000000, false));
+        shopItems.push(new shopItem("terminatorAuto", "Terminator Automatic", 1, 1000000, true));
+    }
 
     shopItems.forEach(element => {
         element.setBought(cookieSaveFile.getItemAmount(element.id));
@@ -46,7 +69,7 @@ function setupShopItems() {
         var el = document.createElement("li");
         el.className = "shopItemListItem";
         el.innerHTML = element.innerHTML;
-        document.getElementById("sidebarList").appendChild(el);
+        shopListMenu.appendChild(el);
 
         element.updateItem();
 
@@ -56,6 +79,9 @@ function setupShopItems() {
             valueOfClick += element.valueThatAdds * element.bought;
         }
     });
+
+    brickRotationPerClick = Math.min(valueOfClick, 180);
+    brickRotationPerSecond = clicksPerSecond;
 }
 
 function clickOnBrick() {
@@ -66,18 +92,19 @@ function clickOnBrick() {
 }
 
 function updateBanner() {
-    document.getElementById("banner").innerHTML = numberWithCommas(Math.round(totalClicks));
+    energyLabel.innerHTML = numberWithCommas(Math.round(totalClicks));
 }
 
 function setupRotationAnimation() {
-    var styleObject = document.getElementById("brickImg").style;
+    var styleObject = rotatingObject.style;
     styleObject.animation = "fullRotation";
     styleObject.animationTimingFunction = "linear";
     styleObject.animationIterationCount = "infinite";
+    updateRotationAnimation();
 }
 
 function updateRotationAnimation() {
-    var styleObject = document.getElementById("brickImg").style;
+    var styleObject = rotatingObject.style;
     if (brickRotationPerSecond < 180)
         styleObject.animationDuration = 360 / brickRotationPerSecond + "s";
     else
@@ -85,7 +112,8 @@ function updateRotationAnimation() {
 }
 
 function rotateBrick() {
-    document.getElementById("brick").style.transform = "rotate(" + brickRotation + "deg)";
+    clickRotatingObject.style.transform = "rotate(" + brickRotation + "deg)";
+    // TODO manual rotation to the item, TODO Rework rotation system
 }
 
 function saveCookies() {
@@ -103,6 +131,7 @@ function buyShopItem(id) {
     shopItems.find(element => element.id === id).buyItem();
 }
 
+//Copiado un regex de anadir comas entre cada 3 numeros
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -135,6 +164,8 @@ class shopItem {
             "<b class='shopItemPrice' id='" + this.id + "Price'> " + this.price + " </b>" +
             "<span class='tooltipText'> Adds extra " + this.valueThatAdds + " b" + recurringString + ". </span>" +
             "</div>";
+
+        /** TODO a way to use templates without using plain strings in js */
     }
 
     /**

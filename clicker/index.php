@@ -10,7 +10,7 @@
     <template></template>
 </head>
 
-<body onload="startup()">
+<body>
     <div class="mainContent">
         <?php include 'inc/game_zone/gameZone.php'?>
     </div>
