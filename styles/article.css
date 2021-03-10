@@ -22,20 +22,27 @@
 }
 
 .articleGoToButton {
-    padding: 4px 8px;
+    padding: 0 8px;
     border-width: 4px;
     border-color: lightsalmon;
     border-style: solid;
     background-color: lightsalmon;
     border-radius: 6px;
     box-sizing: border-box;
-    transition-duration: 400ms;
+    transition-duration: 300ms;
     cursor: pointer;
 }
 
 .articleGoToButton:hover {
-    box-shadow: 4px 4px 2px 0px rgba(0, 0, 0, 0.404);
-    transform: translate(-3px, -3px);
+    box-shadow: 0 2px 2px 0px rgba(0, 0, 0, 0.204);
+    transform: translate(0, -2px);
+}
+
+.articleGoToButton:active {
+    background-color: rgb(255, 187, 160);
+    border-color: rgb(255, 187, 160);
+    color: rgba(0, 0, 0, 0.692);
+    transition-duration: 0ms;
 }
 
 .articleDate {
