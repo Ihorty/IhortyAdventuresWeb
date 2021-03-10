@@ -3,7 +3,6 @@
 Buenas compañeros de clase! Estoy haciendo un pequeño proyecto de página web, en la cual voy a incluir todo lo que vayamos aprendiendo y varios proyectitos pequeños anidados a la misma.
 
 Usaré esta página para varias cosas en concreto:
- - Repasar temarios (sobretodo js ya que es lo que más domino yo personalmente);
  - Código de cosas divertidas
     - Por ejemplo, hice un código que vuelve aleatorio el fondo de todos los divs, me gustaría compartirlo con vosotros.
  - Incluir el juego clicker que estoy desarrollando por diversión.
@@ -24,8 +23,10 @@ Estoy aprendiendo a usar GIT, una vez tenga mayor conocimiento de la herramienta
 ##### "Los artistas no pueden trabajar con prisas" ~ Michaelangelo
 
 
- - Realizar una página hub central para todo el contenido por añadir.
+ - Conexion con la base de datos.
+ - Auto publicacion en base a pushes de git.
  - Organizar los repasos a realizar para que sea visible y cómodo de acceder.
+ - Posibilitar comentarios.
  - Crear módulos cómodos para mostrar dichos repasos cómodamente.
  - Publicar el GIT para que podais descargar toda la fuente sin problemas.
  - Crear la zona "sobre mi".
