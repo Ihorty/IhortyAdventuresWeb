@@ -12,7 +12,6 @@
     <?php include 'inc/navigationHead.php'?>
     <main>
         <div class="mainContent"><img class="underConstructionIcon" src="img/under_construction.svg"></div>
-        <div class="sideContent"></div>
     </main>
     <footer></footer>
 </body>

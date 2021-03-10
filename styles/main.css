@@ -3,7 +3,6 @@
 body {
     margin: 0;
     background-color: bisque;
-    min-width: 550px;
 }
 
 
@@ -16,7 +15,6 @@ header {
     top: 0;
     z-index: -1000;
     background-color: rgb(255, 151, 53);
-    min-width: 550px;
 }
 
 header>* {
@@ -89,10 +87,9 @@ main {
 
 .mainContent {
     flex: 2 0;
-    min-width: 500px;
-    max-width: 800px;
+    max-width: 1000px;
     min-height: calc(100vh - 48px - 148px - 120px - 24px);
-    margin: 8px 8px 16px 32px;
+    margin: 8px 32px 32px;
     background-color: beige;
     border-radius: 16px;
     box-shadow: 4px 4px 8px 2px #00000023;
@@ -109,18 +106,6 @@ main {
     margin: 32px 0;
     color: rgba(255, 68, 0, 0.4);
     flex-shrink: 1;
-}
-
-.sideContent {
-    height: auto;
-    flex-grow: 0 0;
-    width: 250px;
-    max-height: 250px;
-    min-height: 160px;
-    margin: 8px 32px 16px 8px;
-    background-color: beige;
-    border-radius: 16px;
-    box-shadow: 4px 4px 8px 2px #00000023;
 }
 
 
@@ -146,9 +131,13 @@ footer {
 
 @media(max-width: 860px) {
     .mainContent {
-        margin: 8px 32px;
+        margin: 8px;
     }
-    .sideContent {
-        margin: 8px 32px;
+}
+
+@media(max-width: 564px) {
+    .mainContent {
+        margin: 0;
+        border-radius: 0;
     }
 }

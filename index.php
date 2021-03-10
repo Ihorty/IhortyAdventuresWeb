@@ -20,7 +20,6 @@
             <hr class="mainSeparator">
             <?php include "inc/articleTemplate.php"?>
         </div>
-        <div class="sideContent"></div>
     </main>
     <?php include 'inc/footer.php'?>
 </body>
