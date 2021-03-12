@@ -1,0 +1,2 @@
+SELECT ID,Content FROM articles ORDER BY CreationDate DESC
+LIMIT 4 OFFSET 4
