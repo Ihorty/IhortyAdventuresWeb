@@ -120,6 +120,24 @@ footer {
 }
 
 
+/* Pagination */
+
+.pagination {
+    width: 100%;
+    margin: 24px 4px;
+    padding: 0;
+}
+
+.pagination>a {
+    color: rgb(60, 147, 168);
+    background-color: #ffffff;
+    border-radius: 4px;
+    margin: 1px;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+
 /* Other sizes */
 
 @media(max-width: 860px) {
