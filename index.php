@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="scripts/main.js"></script>
-    <link rel="stylesheet" href="styles/main.css">
+    <?php include "inc/header.php";?>
     <title>Ragoria</title>
 </head>
 
@@ -17,7 +16,7 @@
             include "inc/articleTemplate.php";
 
             /* Constants */
-            const PAGE_SIZE = 5;
+            const PAGE_SIZE = 8; //Supongo que creare paginacion antes de crear tantos articulos (espero)
 
             /* Global variables */
             if (isset($_GET['page']) && $_GET['page'] != "") {
@@ -38,33 +37,31 @@
                 while ($line = mysqli_fetch_assoc($articulos)) {
                     print_article($line['Title'], $line['Content'], $line['CreationDate']);
                 }
-
-                echo <<<EOC
-                <scrpit>console.log("entra en $page")</script>
-                EOC;
             }
 
             function get_total_pages()
             {
+
+                global $conexion;
+                $num = mysqli_query($conexion,"SELECT COUNT(*) AS row_amount FROM articles");
+                return mysqli_fetch_assoc($num)['row_amount']; //TODO Test if this works
             }
 
             /* Startup:  */
             show_articles($page);
+            /* Esta linea es para escribir un artículo a mano hasta que haga un constructor in-web */
+            /* include "inc/articleTemplateDebug.php"; */
             /*************/
 
             ?>
+<!--             
+    TODO PAGINATION:
             <div class="pagination">
                 <a href='?page=1'>&#60;&#60;</a>
                 <a>&#60;- anterior</a>
-                <!-- Implementamos programaticamente la cantidad de paginas que tenemos -->
-                <?php
-                /* TODO: cuando las paginas excedan un número en concreto, poner un separador "..." entre las 
-                        páginas cercanas a la actual y las primeras y últimas */
-
-                ?>
                 <a>siguiente -&#62;</a>
                 <a href='?page=2'>&#62;&#62;</a>
-            </div>
+            </div> -->
         </div>
     </main>
     <?php include 'inc/footer.php' ?>

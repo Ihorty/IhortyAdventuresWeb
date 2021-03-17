@@ -13,3 +13,4 @@ function print_article($title, $content, $date)
 EOT;
     echo $html;
 }
+?>
