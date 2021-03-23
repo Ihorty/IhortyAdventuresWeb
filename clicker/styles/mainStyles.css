@@ -1,5 +1,6 @@
 @import url("shop.css");
 @import url("animations.css");
+@import url("gameZone.css");
 * {
     user-select: none;
 }

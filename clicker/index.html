@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Brick site</title>
+    <link rel="stylesheet" href="styles/mainStyles.css">
+    <script type="text/javascript" src="scripts/mainScript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <template></template>
+</head>
+
+<body>
+    <div class="mainContent">
+        <div class="fullGameZone">
+            <div class="radialGradientBackground"></div>
+            <h1 id="totalPointsNumber" class="totalPointsNumber overScore"> 20 </h1>
+            <div id="clickCrystal" class="clickZone">
+                <div id="rotatingGearClick">
+                    <img id="rotatingGear" src="img/gear.png" />
+                </div>
+            </div>
+        </div>
+
+        <div class="devMenu">
+            <button onclick="saveCookies()"> Save </button>
+        </div>
+    </div>
+    <div class="sidebar">
+        <ul id="sidebarList">
+
+        </ul>
+    </div>
+</body>
+
+</html>
