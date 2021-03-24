@@ -50,10 +50,14 @@
     width: 375px;
     min-width: 375px;
     position: relative;
+    transition-duration: 1s;
 }
 
 .pebble {
     height: 64px;
     width: 64px;
     object-fit: cover;
+    visibility: hidden;
+    opacity: 0;
+    transition-duration: 250ms;
 }

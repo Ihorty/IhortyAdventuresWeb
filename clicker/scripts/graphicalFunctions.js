@@ -24,6 +24,8 @@ function positionAround(divId, rotationOffset = 0, childId) {
         var x = Math.cos(((positionInterval * i) + rotationOffset) * (Math.PI / 180)) * radius;
         childdiv.style.top = (y + totalOffset).toString() + "px";
         childdiv.style.left = (x + totalOffset).toString() + "px";
+        childdiv.style.visibility = "visible";
+        childdiv.style.opacity = 1;
     };
 }
 

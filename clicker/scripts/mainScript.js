@@ -285,10 +285,10 @@ function recurringEachFrame() {
     //WARNING! No aplicar comandos complicados o recurrentes, puede hacer que vaya lento el juego.
     totalClicks += (clicksPerSecond / 60);
     updateBanner();
-    autoRotation += (brickRotationPerSecond / 60);
+    autoRotation += Math.floor(brickRotationPerSecond / 60);
     rotatingObject.style.transform = "rotate(" + autoRotation + "deg)"; // Giramos la parte interna del click
     frame++;
-    positionAround("pebbleSet", -frame / 6);
+    positionAround("pebbleSet", Math.floor(-frame / 6) );
 }
 
 function buyShopItem(id) {
