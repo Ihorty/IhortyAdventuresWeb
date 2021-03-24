@@ -8,6 +8,7 @@
  - [ ] Advanced: Communist style server side saving
 
  ### In progress
+ - [ ] IMPORTANTE: Traducir todo al castellano. Nada de bilinguismo en el codigo.
  - [ ] Add icons to the game world (with a limit)
     - [x] Pebbles
     - [ ] Mountains
