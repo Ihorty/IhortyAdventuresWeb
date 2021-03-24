@@ -148,7 +148,7 @@ class ClickerSaveFile {
 /************************* Vars *************************/
 /********************************************************/
 
-const devMode = true; //Change this to show dev tools
+const devMode = false; //Change this to show dev tools
 
 var totalClicks = 0;
 var clicksPerSecond = 0;
