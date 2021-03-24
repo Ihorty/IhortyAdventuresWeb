@@ -16,9 +16,11 @@
 }
 
 .overScore {
-    transform: translate(0, -140px);
+    transform: translate(0, -200px);
     position: absolute;
     color: white;
+    text-shadow: 0 1px 3px black;
+    z-index: 1000;
 }
 
 .clickZone {
@@ -41,4 +43,17 @@
 #rotatingGear {
     width: 100%;
     height: 100%;
+}
+
+#pebbleSet {
+    height: 375px;
+    width: 375px;
+    min-width: 375px;
+    position: relative;
+}
+
+.pebble {
+    height: 64px;
+    width: 64px;
+    object-fit: cover;
 }

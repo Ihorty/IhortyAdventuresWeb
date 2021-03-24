@@ -1,6 +1,15 @@
 class shopItem {
-
-    constructor(id, shownName, price, valueThatAdds, isRecurring) {
+    /**
+     * 
+     * @param {String} id Id of shop item
+     * @param {String} shownName Public name
+     * @param {Number} price Starting price, it will multiply by the default multiplier
+     * @param {Number} valueThatAdds Clicks per iteration of item
+     * @param {Boolean} isRecurring Is per second? or else per click
+     * @param {URL} icon Icon url of the item
+     * @param {String} parentId Where each item image will be placed in the game menu
+     */
+    constructor(id, shownName, price, valueThatAdds, isRecurring, icon, parentId) {
         // Variables por defecto
         this.bought = 0;
         this.priceMultiplier = 1.25;
@@ -11,6 +20,8 @@ class shopItem {
         this.basePrice = price;
         this.valueThatAdds = valueThatAdds;
         this.isRecurring = isRecurring;
+        this.icon = icon;
+        this.parentId = parentId;
 
         this.updatePrice();
 
@@ -24,6 +35,10 @@ class shopItem {
             "</div>";
 
         /** TODO a way to use templates without using plain strings in js */
+    }
+
+    setupImage() {
+        if (this.icon != undefined) document.getElementById(this.id + "ShopItem").style.backgroundImage = "url('" + this.icon + "')";
     }
 
     /**
@@ -57,7 +72,7 @@ class shopItem {
             this.updatePrice();
             this.updateItem();
             updateBanner();
-            //updateRotationAnimation();
+            this.addGameItem();
 
             cookieSaveFile.setItemAmount(this.id, this.bought);
             saveCookies(); //TODO delete this if it is too laggy to buy
@@ -80,8 +95,20 @@ class shopItem {
      * Actualiza la parte gráfica (HTML) del elemento
      */
     updateItem() {
+        // Actualiza la tienda
         document.getElementById(this.id + "Price").innerHTML = this.price;
         document.getElementById(this.id + "Num").innerHTML = this.bought;
+    }
+
+    addGameItem() {
+        // Actualiza la parte game
+        if (this.parentId != undefined) {
+            var imgToAdd = document.createElement("img");
+            imgToAdd.classList.add(this.id);
+            imgToAdd.src = this.icon;
+            document.getElementById(this.parentId).appendChild(imgToAdd);
+            //<img class="this.id" src="this.icon">
+        }
     }
 }
 
@@ -98,11 +125,11 @@ class ClickerSaveFile {
     }
 
     setItemAmount(id, amount) {
-        let found = this.shopItemsAmount.find(element => element.id === id);
+        let found = this.shopItemsAmount.find(element => element[0] === id);
         if (found === undefined) {
             this.shopItemsAmount.push([id, amount]);
         } else {
-            found.amount = amount;
+            found[1] = amount;
         }
     }
 
@@ -110,10 +137,10 @@ class ClickerSaveFile {
      * Busca el la id del elemento y devuelve la cantidad comprada si existe
      */
     getItemAmount(id) {
-        let found = this.shopItemsAmount.find(element => element.id === id);
+        let found = this.shopItemsAmount.find(element => element[0] === id);
         if (found == undefined)
             return 0;
-        return found.amount;
+        return found[1];
     }
 }
 
@@ -132,14 +159,19 @@ var manualRotation = 0;
 var brickRotationPerClick = 5;
 var autoRotation = 0;
 var brickRotationPerSecond = 0;
+var frame = 0;
 
 var cookieSaveFile;
 // Constant items:
 const MAX_ROTATION = 240;
 const SAVE_FILE_ID = "cookie_clicker_save"
 const shopItems = [
-    new shopItem("pebble", "China Arcana", 15, 0.15, true),
-    new shopItem("wand", "Varita magica", 150, 1, true)
+    new shopItem("pebble", "China Arcana", 15, 0.15, true, "img/rocksSmallVertical.png", "pebbleSet"),
+    new shopItem("wand", "Varita magica", 150, 1, true, "img/magicWand.png"),
+    new shopItem("rock", "Roca Arcana", 500, 5, true, "img/rocksMediumFat.png"),
+    new shopItem("tree", "Arbol", 1500, 10, true, "img/tree.png"),
+    new shopItem("mountain", "Montaña", 50000, 1000, true, "img/mountain.png"),
+    new shopItem("mouse", "Raton más grande", 20, 2, false),
 ];
 
 // HTML items
@@ -149,6 +181,7 @@ var rotatingObject;
 var shopListMenu;
 var energyLabel;
 
+/* Funciones */
 
 window.onload = function() {
     // Cargamos los elementos HTML en variables
@@ -179,6 +212,12 @@ function startup() {
     updateBanner();
 
     clickObject.onclick = () => clickOnBrick();
+
+    refreshGameView();
+}
+
+function refreshGameView() {
+    positionAround("pebbleSet");
 }
 
 function setupShopItems() {
@@ -198,6 +237,11 @@ function setupShopItems() {
         shopListMenu.appendChild(el);
 
         element.updateItem();
+        element.setupImage();
+
+        for (i = 0; i < element.bought; i++) {
+            element.addGameItem();
+        }
 
         if (element.isRecurring) {
             clicksPerSecond += element.valueThatAdds * element.bought;
@@ -223,7 +267,6 @@ function updateBanner() {
 
 function rotateBrick() {
     clickRotatingObject.style.transform = "rotate(" + manualRotation + "deg)";
-    // TODO manual rotation to the item, TODO Rework rotation system
 }
 
 function saveCookies() {
@@ -243,7 +286,9 @@ function recurringEachFrame() {
     totalClicks += (clicksPerSecond / 60);
     updateBanner();
     autoRotation += (brickRotationPerSecond / 60);
-    rotatingObject.style.transform = "rotate(" + autoRotation + "deg)";
+    rotatingObject.style.transform = "rotate(" + autoRotation + "deg)"; // Giramos la parte interna del click
+    frame++;
+    positionAround("pebbleSet", -frame / 6);
 }
 
 function buyShopItem(id) {

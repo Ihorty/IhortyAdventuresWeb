@@ -17,12 +17,16 @@
     box-sizing: border-box;
     width: 100%;
     position: relative;
+    min-height: 48px;
     background-color: brown;
     border-color: orangered;
     border-width: 2px;
     border-style: solid;
     cursor: pointer;
     transition-duration: 200ms;
+    background-position: right 30%;
+    background-size: 40%;
+    background-repeat: no-repeat;
 }
 
 .shopItem:hover {
