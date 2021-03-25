@@ -61,12 +61,10 @@ class shopItem {
 
             if (this.isRecurring) {
                 clicksPerSecond += this.valueThatAdds;
-                brickRotationPerSecond += this.valueThatAdds;
-                brickRotationPerSecond = Math.min(brickRotationPerSecond, MAX_ROTATION);
+                rotationPerSecond = Math.min(rotationPerSecond + this.valueThatAdds, MAX_ROTATION);
             } else {
                 valueOfClick += this.valueThatAdds;
-                brickRotationPerClick += this.valueThatAdds;
-                brickRotationPerClick = Math.min(brickRotationPerSecond, MAX_ROTATION);
+                rotationPerClick = Math.min(rotationPerClick + this.valueThatAdds, MAX_ROTATION);
             }
 
             this.updatePrice();
@@ -156,13 +154,14 @@ var valueOfClick = 1;
 
 // rotation
 var manualRotation = 0;
-var brickRotationPerClick = 5;
+var rotationPerClick = 5;
 var autoRotation = 0;
-var brickRotationPerSecond = 0;
+var rotationPerSecond = 0;
 var frame = 0;
 
 var cookieSaveFile;
 // Constant items:
+const ITERATIONS_PER_SECOND = 48;
 const MAX_ROTATION = 240;
 const SAVE_FILE_ID = "cookie_clicker_save"
 const shopItems = [
@@ -206,8 +205,8 @@ function startup() {
     }
 
     totalClicks = cookieSaveFile.totalClicks;
-    setInterval(recurringEachFrame, 1000 / 48); // Cada frame ocurren cosas
-    setInterval(saveCookies(), 60 * 1000); // Cada minuto guardamos el juego
+    setInterval(recurringEachFrame, 1000 / ITERATIONS_PER_SECOND); // Cada frame ocurren cosas
+    setInterval(saveCookies, 60 * 1000); // Cada minuto guardamos el juego
     setupShopItems();
     updateBanner();
 
@@ -250,12 +249,12 @@ function setupShopItems() {
         }
     });
 
-    brickRotationPerClick = Math.min(valueOfClick, MAX_ROTATION);
-    brickRotationPerSecond = Math.min(clicksPerSecond, MAX_ROTATION);
+    rotationPerClick = Math.min(valueOfClick, MAX_ROTATION);
+    rotationPerSecond = Math.min(clicksPerSecond, MAX_ROTATION);
 }
 
 function clickOnBrick() {
-    manualRotation += brickRotationPerClick;
+    manualRotation += rotationPerClick;
     totalClicks += valueOfClick;
     updateBanner();
     rotateBrick();
@@ -283,12 +282,12 @@ function saveCookies() {
  */
 function recurringEachFrame() {
     //WARNING! No aplicar comandos complicados o recurrentes, puede hacer que vaya lento el juego.
-    totalClicks += (clicksPerSecond / 60);
+    totalClicks += (clicksPerSecond / ITERATIONS_PER_SECOND);
     updateBanner();
-    autoRotation += Math.floor(brickRotationPerSecond / 60);
+    autoRotation += rotationPerSecond / ITERATIONS_PER_SECOND;
     rotatingObject.style.transform = "rotate(" + autoRotation + "deg)"; // Giramos la parte interna del click
     frame++;
-    positionAround("pebbleSet", Math.floor(-frame / 6) );
+    positionAround("pebbleSet", -frame / 6 );
 }
 
 function buyShopItem(id) {
