@@ -287,7 +287,7 @@ function recurringEachFrame() {
     autoRotation += rotationPerSecond / ITERATIONS_PER_SECOND;
     rotatingObject.style.transform = "rotate(" + autoRotation + "deg)"; // Giramos la parte interna del click
     frame++;
-    positionAround("pebbleSet", -frame / 6 );
+    positionAround("pebbleSet", -frame / 6);
 }
 
 function buyShopItem(id) {

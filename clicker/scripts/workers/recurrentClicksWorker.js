@@ -1,0 +1,1 @@
+var clicksPerSecond = 0;
