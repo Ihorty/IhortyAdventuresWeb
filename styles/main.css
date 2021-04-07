@@ -30,12 +30,15 @@ header>* {
 }
 
 .headerTitle {
-    font-size: 66px;
+    font-size: 78px;
     display: inline-block;
     color: white;
     position: absolute;
+    top: -20%;
     left: 50%;
+    font-family: 'oliciy';
     transform: translate(-50%, 0);
+    text-shadow: 7px 7px 2px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -105,10 +108,30 @@ main {
 /* Footer zone */
 
 footer {
-    background-color: slategray;
-    height: 120px;
-    padding: 16px;
+    background-color: rgb(65, 75, 74);
+    min-height: 80px;
+    padding: 8px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+footer>* {
+    padding: 0 8px;
+    flex: 1 1;
+}
+
+footer * {
+    font-size: 10px;
+    color: white;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+footer a {
+    text-decoration: none;
+    color: rgb(209, 162, 42);
 }
 
 
