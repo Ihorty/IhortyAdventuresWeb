@@ -7,7 +7,7 @@
     <title>Ragoria</title>
 </head>
 
-<body>
+<body onload="hljs.highlightAll();">
     <?php include 'inc/navigationHead.php' ?>
     <main>
         <div class="mainContent">

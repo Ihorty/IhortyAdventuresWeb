@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Merriweather_Sans';
-    src: url('../fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf');
+    src: url('/fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf');
 }
 
 @font-face {
     font-family: 'oliciy';
-    src: url('../fonts/oliciy/Oliciy.ttf');
+    src: url('/fonts/oliciy/Oliciy.ttf');
 }
 
 * {

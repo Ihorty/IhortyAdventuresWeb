@@ -13,7 +13,7 @@
     <main>
         <div class="mainContent"><img class="underConstructionIcon" src="img/under_construction.svg"></div>
     </main>
-    <footer></footer>
+    <?php include 'inc/footer.php'?>
 </body>
 
 </html>
