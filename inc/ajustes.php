@@ -7,7 +7,7 @@
     //$conexion = mysqli_connect("ragoria.com","IhortyReader","R34d3r@PotatoDatabase","ragoria", "3307"); //TODO aun no funciona
 
     //Mi conexion local de xampp si todo lo demás falla. Esta conexion fallará si está en mi hosting
-    //if(!$conexion) $conexion = mysqli_connect("localhost","root","","ragoria");
+    //$conexion = mysqli_connect("localhost","root","","ragoria");
 
     //Compatibilidad para simbolos y tildes:
     mysqli_query($conexion, "SET NAMES utf8");

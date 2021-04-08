@@ -1,14 +1,10 @@
 @font-face {
-    font-family: 'Merriweather_Sans';
+    font-family: 'Merriweather';
     src: url('/fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf');
+    font-weight: 200;
 }
 
 @font-face {
     font-family: 'oliciy';
     src: url('/fonts/oliciy/Oliciy.ttf');
-}
-
-* {
-    font-family: 'Merriweather Sans';
-    font-size: large;
 }
