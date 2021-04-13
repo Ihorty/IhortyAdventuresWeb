@@ -15,27 +15,3 @@ Esta página se hace totalmente por ocio y espero que todos nos divertamos con e
 Todo el código fuente será tan documentado y comentado como pueda hacer para que fuese entendible y repetible por vosotros y todos los que vean dicha página, si algo no se comprende del todo feedback será más que bienvenido.
 
 Estoy aprendiendo a usar GIT, una vez tenga mayor conocimiento de la herramienta haré un repositorio del cual podréis descargar todo el código de la página. Incluido éste documento.
-
-
-
-# TODO
-##### Aqui iré listando todo lo que se vá realizar en la página, sin estimaciones.
-##### "Los artistas no pueden trabajar con prisas" ~ Michaelangelo
-
-
- - Conexion con la base de datos.
- - Auto publicacion en base a pushes de git.
- - Organizar los repasos a realizar para que sea visible y cómodo de acceder.
- - Posibilitar comentarios.
- - Crear módulos cómodos para mostrar dichos repasos cómodamente.
- - Publicar el GIT para que podais descargar toda la fuente sin problemas.
- - Crear la zona "sobre mi".
-
-
-
-# Changelog
-##### Aquí iré añadiendo los cambios realizados con las fechas de los mismos.
-
-
- --- 24 - 02 - 2021 ---
-  - Creación de éste documento.

@@ -7,13 +7,14 @@
     <title>Ragoria</title>
 </head>
 
-<body onload="hljs.highlightAll();">
+<body onload="hljs.highlightAll();showHideAllGradients()">
     <?php include 'inc/navigationHead.php' ?>
     <main>
         <div class="mainContent">
             <?php
             include "inc/ajustes.php";
             include "inc/articleTemplate.php";
+            session_start();
 
             /* Constants */
             const PAGE_SIZE = 8; //Supongo que creare paginacion antes de crear tantos articulos (espero)
@@ -35,7 +36,7 @@
 
                 /* Repasamos todos los articulos obtenidos y los presentamos en el html usando el archivo articleTemplate.php */
                 while ($line = mysqli_fetch_assoc($articulos)) {
-                    print_article($line['Title'], $line['Content'], $line['CreationDate']);
+                    echo get_printed_article($line['Title'], $line['Content'], $line['CreationDate']);
                 }
             }
 

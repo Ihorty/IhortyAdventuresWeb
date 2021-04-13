@@ -1,5 +1,6 @@
 .articleContainer {
     display: flex;
+    margin-bottom: 8px;
     flex-wrap: wrap;
     position: relative;
     justify-content: space-between;
@@ -12,11 +13,27 @@
 }
 
 .articleContent {
-    margin-bottom: 8px;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     width: 100%;
+}
+
+.articleCC {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-height: 450px;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.contentHidder {
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0), beige);
 }
 
 .articleContent>p {
@@ -30,7 +47,7 @@
     margin-bottom: 32px;
     width: 90%;
     max-width: 90vw;
-    font-family: fontAwesome;
+    font-family: 'fontAwesome';
 }
 
 .articleSeparator {

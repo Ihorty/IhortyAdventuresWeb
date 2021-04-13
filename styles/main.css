@@ -2,7 +2,6 @@
 @import url("fonts.css");
 body {
     margin: 0;
-    background-color: bisque;
 }
 
 
@@ -83,16 +82,15 @@ nav {
 
 main {
     background-color: rgb(181, 220, 255);
+    min-height: calc(100vh - 48px - 148px - 80px);
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
 }
 
 .mainContent {
     flex: 2 0;
     max-width: 1000px;
-    min-height: calc(100vh - 48px - 148px - 120px - 24px);
     margin: 8px 32px 32px;
     background-color: beige;
     border-radius: 16px;

@@ -1,16 +1,20 @@
 <?php
-
-function print_article($title, $content, $date)
+$atitle;
+$acontent;
+$adate;
+function get_printed_article($title, $content, $date)
 {
-    $html = <<<"EOT"
+    return <<<"EOT"
 <div class="articleContainer">
     <h3 class="articleTitle"> $title </h3>
-    <div class="articleContent"> $content </div>
+    <div class="articleCC">
+        <div class="articleContent"> $content </div>
+        <div class="contentHidder"></div>
+    </div>
     <hr class="articleSeparator">
-    <button class="articleGoToButton"> Go to &#10140; </button>
+    <button class="articleGoToButton" onclick="openArticle(this)"> Go to &#10142; </button>
     <p class="articleDate"> $date </p>
 </div>
 EOT;
-    echo $html;
 }
 ?>
