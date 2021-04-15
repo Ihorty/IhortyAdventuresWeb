@@ -36,3 +36,9 @@ function loadArticle() {
     document.getElementsByClassName('articleCC')[0].style.maxHeight = "none";
     document.getElementsByClassName('articleGoToButton')[0].onclick = function() { location.href = ".."; };
 }
+
+function loadArticleDebug(){
+    document.getElementsByClassName('contentHidder')[0].hidden = true;
+    document.getElementsByClassName('articleCC')[0].style.maxHeight = "none";
+    document.getElementsByClassName('articleGoToButton')[0].onclick = function() { location.href = ".."; };
+}
