@@ -27,7 +27,7 @@ function showHideAllGradients() {
 function openArticle(element) {
     element.innerHTML = "&#129044; Return";
     sessionStorage.setItem('article', element.parentElement.outerHTML);
-    location.href = "article.php";
+    location.href = "article";
 }
 
 function loadArticle() {
@@ -37,7 +37,7 @@ function loadArticle() {
     document.getElementsByClassName('articleGoToButton')[0].onclick = function() { location.href = ".."; };
 }
 
-function loadArticleDebug(){
+function loadArticleDebug() {
     document.getElementsByClassName('contentHidder')[0].hidden = true;
     document.getElementsByClassName('articleCC')[0].style.maxHeight = "none";
     document.getElementsByClassName('articleGoToButton')[0].onclick = function() { location.href = ".."; };
