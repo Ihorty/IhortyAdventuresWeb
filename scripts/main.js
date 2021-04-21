@@ -20,6 +20,11 @@ function showHideAllGradients() {
     for (let i = 0; i < htmlElements.length; i++) showHideGradient(htmlElements[i]);
 }
 
+
+/* Evitad este sistema, mueve el contenido entero de un articulo (un html) de una página a otra. 
+ * Sirve muy bien para aprender a persistir informacion entre paginas, pero es una forma incorrecta de mostrar artículos, ya que no permite compartir los artículos entre personas.
+ */
+
 /**
  * Abre un articulo en detalle. Para ello abrimos la página article.php y le mandamos el elemento html que tenemos en el contenido.
  * @param {HTMLElement} element 
@@ -42,3 +47,4 @@ function loadArticleDebug() {
     document.getElementsByClassName('articleCC')[0].style.maxHeight = "none";
     document.getElementsByClassName('articleGoToButton')[0].onclick = function() { location.href = ".."; };
 }
+/***************************/
