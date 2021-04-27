@@ -5,11 +5,11 @@ class shopItem {
      * @param {String} shownName Public name
      * @param {Number} price Starting price, it will multiply by the default multiplier
      * @param {Number} valueThatAdds Clicks per iteration of item
-     * @param {Boolean} isRecurring Is per second? or else per click
+     * @param {Number} type Type from types array
      * @param {URL} icon Icon url of the item
      * @param {String} parentId Where each item image will be placed in the game menu
      */
-    constructor(id, shownName, price, valueThatAdds, isRecurring, icon, parentId) {
+    constructor(id, shownName, price, valueThatAdds, type, icon, parentId, numToShow) {
         // Variables por defecto
         this.bought = 0;
         this.priceMultiplier = 1.25;
@@ -19,13 +19,14 @@ class shopItem {
         this.shownName = shownName;
         this.basePrice = price;
         this.valueThatAdds = valueThatAdds;
-        this.isRecurring = isRecurring;
+        this.type = type;
         this.icon = icon;
         this.parentId = parentId;
+        this.numToShow = numToShow;
 
         this.updatePrice();
 
-        let recurringString = this.isRecurring ? "/s" : "";
+        let recurringString = this.type == 1 ? "/s" : "";
         //Html que representa cada item de la tienda
         this.innerHTML = "<div class='shopItem' id='" + this.id + "ShopItem' onclick='buyShopItem(" + '"' + this.id + '"' + ")'>" +
             "<b class='shopItemNum' id='" + this.id + "Num'> " + this.bought + " </b>" +
@@ -74,6 +75,7 @@ class shopItem {
 
             cookieSaveFile.setItemAmount(this.id, this.bought);
             saveCookies(); //TODO delete this if it is too laggy to buy
+            refreshGameView();
         }
     }
 
@@ -164,13 +166,19 @@ var cookieSaveFile;
 const ITERATIONS_PER_SECOND = 48;
 const MAX_ROTATION = 240;
 const SAVE_FILE_ID = "cookie_clicker_save"
+const types = {
+    "clicker": 0,
+    "recurring": 1,
+    "mechanicalClicker": 2,
+    "mechanicalRecurring": 3
+}
 const shopItems = [
-    new shopItem("pebble", "China Arcana", 15, 0.15, true, "img/rocksSmallVertical.png", "pebbleSet"),
-    new shopItem("wand", "Varita magica", 150, 1, true, "img/magicWand.png"),
-    new shopItem("rock", "Roca Arcana", 500, 5, true, "img/rocksMediumFat.png"),
-    new shopItem("tree", "Arbol", 1500, 10, true, "img/tree.png"),
-    new shopItem("mountain", "Montaña", 50000, 1000, true, "img/mountain.png"),
-    new shopItem("mouse", "Raton más grande", 20, 2, false),
+    new shopItem("pebble", "China Arcana", 15, 0.15, types.recurring, "img/water_drop.png", "pebbleSet"),
+    new shopItem("wand", "Varita magica", 150, 1, types.recurring, "img/magicWand.png"),
+    new shopItem("rock", "Roca Arcana", 500, 5, types.recurring, "img/rocksMediumFat.png"),
+    new shopItem("tree", "Arbol", 1500, 10, types.recurring, "img/tree.png"),
+    new shopItem("mountain", "Montaña", 50000, 1000, types.recurring, "img/mountain.png"),
+    new shopItem("mouse", "Raton más grande", 20, 2, types.clicker),
 ];
 
 // HTML items
@@ -216,7 +224,7 @@ function startup() {
 }
 
 function refreshGameView() {
-    positionAround("pebbleSet");
+    positionAround("pebbleSet", true, true, "pebble");
 }
 
 function setupShopItems() {
@@ -287,7 +295,6 @@ function recurringEachFrame() {
     autoRotation += rotationPerSecond / ITERATIONS_PER_SECOND;
     rotatingObject.style.transform = "rotate(" + autoRotation + "deg)"; // Giramos la parte interna del click
     frame++;
-    positionAround("pebbleSet", -frame / 6);
 }
 
 function buyShopItem(id) {
