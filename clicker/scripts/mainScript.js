@@ -8,8 +8,9 @@ class shopItem {
      * @param {Number} type Type from types array
      * @param {URL} icon Icon url of the item
      * @param {String} parentId Where each item image will be placed in the game menu
+     * @param {Number} maxAmount Max amount of items that are purchasable
      */
-    constructor(id, shownName, price, valueThatAdds, type, icon, parentId, numToShow) {
+    constructor(id, shownName, price, valueThatAdds, type, icon, parentId, maxAmount) {
         // Variables por defecto
         this.bought = 0;
         this.priceMultiplier = 1.25;
@@ -22,7 +23,7 @@ class shopItem {
         this.type = type;
         this.icon = icon;
         this.parentId = parentId;
-        this.numToShow = numToShow;
+        this.maxAmount = maxAmount;
 
         this.updatePrice();
 
@@ -148,7 +149,7 @@ class ClickerSaveFile {
 /************************* Vars *************************/
 /********************************************************/
 
-const devMode = false; //Change this to show dev tools
+const devMode = true; //Change this to show dev tools
 
 var totalClicks = 0;
 var clicksPerSecond = 0;
@@ -173,7 +174,7 @@ const types = {
     "mechanicalRecurring": 3
 }
 const shopItems = [
-    new shopItem("pebble", "China Arcana", 15, 0.15, types.recurring, "img/water_drop.png", "pebbleSet"),
+    new shopItem("pebble", "China Arcana", 15, 0.15, types.recurring, "img/water_drop.png", "pebbleSet", 8),
     new shopItem("wand", "Varita magica", 150, 1, types.recurring, "img/magicWand.png"),
     new shopItem("rock", "Roca Arcana", 500, 5, types.recurring, "img/rocksMediumFat.png"),
     new shopItem("tree", "Arbol", 1500, 10, types.recurring, "img/tree.png"),
@@ -305,3 +306,5 @@ function buyShopItem(id) {
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //Linea magica copiada de stackoverflow <3
 }
+
+/**** DEBUG FUNCTIONS ****/
