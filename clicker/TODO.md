@@ -1,4 +1,12 @@
  ### Todo
+ - [ ] Organizar varios tipos de energia:
+   - [ ] Arcano
+      - [ ] Cinetico
+         - [ ] Electrico
+         - [ ] Calor
+      - [ ] Materia
+   - [ ] Negativo
+      - [ ] Vacio
  - [ ] Bonus on rotation
  - [ ] Give a style to the clicker
  - [ ] Make shop items more beautiful

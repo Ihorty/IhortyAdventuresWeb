@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+              "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="100px" height="100px"
+     viewBox="0 0 100 100">
+  <path id="star"
+        fill="whitesmoke" stroke="#b6b6b6" stroke-width="1"
+        d="M 50.00,100.00
+           C 50.00,75.00 75.00,50.00 100.00,50.00
+             75.00,50.00 50.00,25.00 50.00,0.00
+             50.00,25.00 25.00,50.00 0.00,50.00
+             25.00,50.00 50.00,75.00 50.00,100.00 Z" />
+</svg>

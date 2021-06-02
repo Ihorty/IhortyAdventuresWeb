@@ -10,7 +10,7 @@ class shopItem {
      * @param {String} parentId Where each item image will be placed in the game menu
      * @param {Number} maxAmount Max amount of items that are purchasable
      */
-    constructor(id, shownName, price, valueThatAdds, type, icon, parentId, maxAmount) {
+    constructor(id, shownName, price, valueThatAdds, type, element, icon, parentId, maxAmount) {
         // Variables por defecto
         this.bought = 0;
         this.priceMultiplier = 1.25;
@@ -21,6 +21,7 @@ class shopItem {
         this.basePrice = price;
         this.valueThatAdds = valueThatAdds;
         this.type = type;
+        this.element = element;
         this.icon = icon;
         this.parentId = parentId;
         this.maxAmount = maxAmount;
@@ -33,7 +34,7 @@ class shopItem {
             "<b class='shopItemNum' id='" + this.id + "Num'> " + this.bought + " </b>" +
             "<b class='shopItemName' id='" + this.id + "Name'> " + this.shownName + " </b>" +
             "<b class='shopItemPrice' id='" + this.id + "Price'> " + this.price + " </b>" +
-            "<span class='tooltipText'> Adds extra " + this.valueThatAdds + " b" + recurringString + ". </span>" +
+            "<span class='tooltipText'> Adds extra " + this.valueThatAdds + " " + this.element + recurringString + ". </span>" +
             "</div>";
 
         /** TODO a way to use templates without using plain strings in js */
@@ -167,19 +168,41 @@ var cookieSaveFile;
 const ITERATIONS_PER_SECOND = 48;
 const MAX_ROTATION = 240;
 const SAVE_FILE_ID = "cookie_clicker_save"
+const energies = {
+    arcane: 0,
+    motion: 0,
+    ember: 0,
+    electro: 0,
+    mass: 0,
+    void: 0
+}
+const energiesPerSecond = {
+    arcane: 0,
+    motion: 0,
+    ember: 0,
+    electro: 0,
+    mass: 0,
+    void: 0
+}
 const types = {
     "clicker": 0,
-    "recurring": 1,
-    "mechanicalClicker": 2,
-    "mechanicalRecurring": 3
+    "recurring": 1
+}
+const energyTypes = {
+    ARCANE: "arcane",
+    MOTION: "motion",
+    EMBER: "ember",
+    ELECTRO: "electro",
+    MASS: "mass",
+    VOID: "void"
 }
 const shopItems = [
-    new shopItem("pebble", "China Arcana", 15, 0.15, types.recurring, "img/water_drop.png", "pebbleSet", 8),
-    new shopItem("wand", "Varita magica", 150, 1, types.recurring, "img/magicWand.png"),
-    new shopItem("rock", "Roca Arcana", 500, 5, types.recurring, "img/rocksMediumFat.png"),
-    new shopItem("tree", "Arbol", 1500, 10, types.recurring, "img/tree.png"),
-    new shopItem("mountain", "Montaña", 50000, 1000, types.recurring, "img/mountain.png"),
-    new shopItem("mouse", "Raton más grande", 20, 2, types.clicker),
+    new shopItem("pebble", "China Arcana", 15, 0.15, types.recurring, energyTypes.ARCANE, "img/water_drop.png", "pebbleSet", 8),
+    new shopItem("wand", "Varita magica", 150, 1, types.recurring, energyTypes.ARCANE, "img/magicWand.png"),
+    new shopItem("rock", "Roca Arcana", 500, 5, types.recurring, energyTypes.ARCANE, "img/rocksMediumFat.png"),
+    new shopItem("tree", "Arbol", 1500, 10, types.recurring, energyTypes.ARCANE, "img/tree.png"),
+    new shopItem("mountain", "Montaña", 50000, 1000, types.recurring, energyTypes.ARCANE, "img/mountain.png"),
+    new shopItem("mouse", "Raton más grande", 20, 2, types.clicker, energyTypes.ARCANE),
 ];
 
 // HTML items

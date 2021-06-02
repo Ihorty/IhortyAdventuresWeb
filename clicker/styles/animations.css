@@ -15,3 +15,14 @@
         transform: rotate(0deg);
     }
 }
+
+.elemento-movil {
+    top: -6px;
+    left: -6px;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: cyan;
+    border-radius: 50%;
+    filter: blur(6px);
+}

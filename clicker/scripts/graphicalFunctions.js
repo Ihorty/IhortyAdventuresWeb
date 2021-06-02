@@ -105,6 +105,7 @@ function joinWithLines(divId, childDivClass) {
         svg.appendChild(getNode("line", STROKE_ATTR));
     }
     parentdiv.appendChild(svg);
+    inicializarAnimacionChinaSVG(parentdiv);
 }
 
 function getNode(n, v) {
@@ -128,4 +129,15 @@ function getNode(n, v) {
  */
 function getIntervalDuration(maxDuration, from, to) {
     return to / maxDuration - from / maxDuration;
+}
+
+
+/* Anime JS Functions */
+function inicializarAnimacionChinaSVG() {
+    anime({
+        targets: '.programmedLines polygon',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 1000
+    })
 }
